@@ -56,3 +56,23 @@ def analyze():
 
 if __name__ == '__main__':
     app.run(debug=True)
+from flask import Flask, request, render_template_string
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def home():
+    return render_template_string("""
+        <h1>🤖 AI Outreach Bot</h1>
+        <form method="POST" action="/analyze">
+            <input type="text" name="link" placeholder="Paste YouTube/Instagram link here" style="width:300px;">
+            <button type="submit">Generate Email</button>
+        </form>
+    """)
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    link = request.form.get('link')
+    # (put your analysis + OpenAI email generation code here)
+    return f"<p>Working on analyzing: {link}</p>"
+    
