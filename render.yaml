@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ai-outreach-bot
+    runtime: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: OPENAI_API_KEY
+        value: your-openai-api-key
